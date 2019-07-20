@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveCellNeighboursFinder.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="CellListExtension.cs" />
     <Compile Include="CellsBuilder.cs" />
-    <Compile Include="ConnectedSameCells.cs" />
+    <Compile Include="ConnectedSameCellsFinder.cs" />
+    <Compile Include="MoveToNextColor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

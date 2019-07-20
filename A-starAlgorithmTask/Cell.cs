@@ -11,5 +11,7 @@
         public Cell EastCell { get; set; }
         public Cell SouthCell { get; set; }
         public Cell WestCell { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

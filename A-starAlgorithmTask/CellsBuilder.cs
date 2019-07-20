@@ -33,6 +33,9 @@ namespace A_starAlgorithmTask
                     cells.Add(cell);
                 }
             }
+
+            var firstCell = cells.GetCell(0, 0);
+            firstCell.IsActive = true;
             return cells;
         }
     }

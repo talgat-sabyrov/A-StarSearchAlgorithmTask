@@ -9,5 +9,10 @@ namespace A_starAlgorithmTask
         {
             return cells.Single(x => x.I == i && x.J == j);
         }
+
+        public static bool Contains(this IList<Cell> cells, Cell cell)
+        {
+            return cells.Any(x => x.I == cell.I && x.J == cell.J);
+        }
     }
 }

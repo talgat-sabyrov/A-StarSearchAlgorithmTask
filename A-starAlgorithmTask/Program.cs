@@ -11,16 +11,18 @@ namespace A_starAlgorithmTask
         static void Main(string[] args)
         {
             var cellBuilder = new CellsBuilder();
-            int[,] array = new [,]
+            int[,] array = new[,]
             {
-                {0, 1, 2, 2},
-                {3, 3, 4, 4},
-                {1, 2, 1, 2},
-                {3, 1, 2, 1}
+                {0, 1, 2, 2, 3},
+                {3, 3, 4, 4, 4},
+                {3, 2, 1, 2, 6},
+                {3, 1, 2, 1, 4},
+                {3, 1, 2, 1, 4},
             };
             var cells = cellBuilder.Build(array);
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
+
+
+
             Console.WriteLine("Hello World!");
             Console.ReadKey();
 

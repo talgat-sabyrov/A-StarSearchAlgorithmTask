@@ -1,19 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace A_starAlgorithmTask.Test
 {
     public class ConnectedSameCellsTest
     {
-        private readonly ConnectedSameCells _connectedSameCells;
+        private readonly ConnectedSameCellsFinder _connectedSameCellsFinder;
         private readonly CellsBuilder _cellsBuilder;
         private readonly IList<Cell> _cells;
 
         public ConnectedSameCellsTest()
         {
-            _connectedSameCells = new ConnectedSameCells();
+            _connectedSameCellsFinder = new ConnectedSameCellsFinder();
             _cellsBuilder = new CellsBuilder();
             int[,] array = new[,]
             {
@@ -25,7 +23,9 @@ namespace A_starAlgorithmTask.Test
             };
             _cells = _cellsBuilder.Build(array);
         }
-
+        /// <summary>
+        /// Must return numbers 3 near the cell - 1:0
+        /// </summary>
         [Fact]
         public void ConnectedSameCellsTest1()
         {
@@ -39,7 +39,7 @@ namespace A_starAlgorithmTask.Test
                 _cells.GetCell(4, 0)
             };
 
-            var result = _connectedSameCells.Get(testedCell);
+            var result = _connectedSameCellsFinder.Find(testedCell);
 
             Assert.Equal(expectedResult.Count, result.Count);
             for (int i = 0; i < result.Count; i++)
