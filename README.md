@@ -17,7 +17,7 @@ for the special case of m = 2. For an unbounded number of colors, even this vari
 remains NP-hard for boards of a dimension of at least n = 3 and is solvable in polynomial
 time for boards of dimension n = 2.
 
-For the solution, a very simple greedy strategy is emplemented to solve it:
+For the solution, a very simple greedy strategy is implemented to solve it:
 - for each move, choose the color that will result in the largest number of tiles connected to the origin;
 - if there is a tie, break ties by choosing the color that has the lowest rank among the colors.
 
@@ -25,6 +25,6 @@ The following figure depicts a possible sequence of moves together with the chos
 
 ![alt text](https://github.com/talgat-sabyrov/A-StarSearchAlgorithmTask/blob/master/Tiles.png)
 
-An automated player that determines the color choice for each move is implemented. The goal is to determine the amount of moves and the sequence of the colors chosen by the player over the course of a game.
+An automated player that determines the color choice for each move is developed. The goal is to determine the amount of moves and the sequence of the colors chosen by the player over the course of a game.
 
 For the solution A* algorithm was used.
