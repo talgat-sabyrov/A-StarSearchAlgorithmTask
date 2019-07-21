@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>A_starAlgorithmTask.Console</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="System.Console" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\A-starAlgorithmTask.BL.Abstractions\A-starAlgorithmTask.BL.Abstractions.csproj" />
+    <ProjectReference Include="..\A-starAlgorithmTask.BL\A-starAlgorithmTask.BL.csproj" />
+  </ItemGroup>
+
+</Project>

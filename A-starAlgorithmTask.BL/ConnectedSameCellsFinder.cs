@@ -1,56 +1,53 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using A_starAlgorithmTask.BL.Abstractions;
+using A_starAlgorithmTask.DataObject;
 
-namespace A_starAlgorithmTask
+namespace A_starAlgorithmTask.BL
 {
-    public class ConnectedSameCellsFinder
+    public class ConnectedSameCellsFinder: IConnectedSameCellsFinder
     {
         private IList<Cell> connectedCells;
         private int Color;
-
-        public ConnectedSameCellsFinder()
-        {
-            connectedCells = new List<Cell>();
-        }
-
+        
         public IList<Cell> Find(Cell cell)
         {
-            if (cell==null || cell.IsActive) return null;
-
+            if (cell==null || cell.Changed) return null;
+            connectedCells = new List<Cell>();
             connectedCells.Add(cell);
             Color = cell.Color;
-            Search(cell);
+            SearchDeeper(cell);
             return connectedCells;
         }
 
-        private void Search(Cell cell)
+        private void SearchDeeper(Cell cell)
         {
             var northCell = cell.NorthCell;
             if (CellCanBeAdded(northCell))
             {
                 connectedCells.Add(northCell);
-                Search(northCell);
+                SearchDeeper(northCell);
             }
 
             var eastCell = cell.EastCell;
             if (CellCanBeAdded(eastCell))
             {
                 connectedCells.Add(eastCell);
-                Search(eastCell);
+                SearchDeeper(eastCell);
             }
 
             var southCell = cell.SouthCell;
             if (CellCanBeAdded(southCell))
             {
                 connectedCells.Add(southCell);
-                Search(southCell);
+                SearchDeeper(southCell);
             }
 
             var westCell = cell.WestCell;
             if (CellCanBeAdded(westCell))
             {
                 connectedCells.Add(westCell);
-                Search(westCell);
+                SearchDeeper(westCell);
             }
         }
 
@@ -59,7 +56,7 @@ namespace A_starAlgorithmTask
             return cell != null &&
                    cell.Color == Color &&
                    !connectedCells.Any(x => x.I == cell.I && x.J == cell.J) &&
-                   !cell.IsActive;
+                   !cell.Changed;
         }
     }
 }

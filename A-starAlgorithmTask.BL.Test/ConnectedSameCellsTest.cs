@@ -1,12 +1,17 @@
+using A_starAlgorithmTask.BL.Abstractions;
+using A_starAlgorithmTask.BL.Extensions;
+using A_starAlgorithmTask.DataObject;
 using System.Collections.Generic;
 using Xunit;
 
-namespace A_starAlgorithmTask.Test
+namespace A_starAlgorithmTask.BL.Test
 {
     public class ConnectedSameCellsTest
     {
         private readonly ConnectedSameCellsFinder _connectedSameCellsFinder;
-        private readonly CellsBuilder _cellsBuilder;
+
+        private readonly ICellsBuilder _cellsBuilder;
+
         private readonly IList<Cell> _cells;
 
         public ConnectedSameCellsTest()

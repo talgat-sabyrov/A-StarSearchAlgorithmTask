@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using A_starAlgorithmTask.DataObject;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace A_starAlgorithmTask
+namespace A_starAlgorithmTask.BL.Extensions
 {
     public static class CellListExtension
     {

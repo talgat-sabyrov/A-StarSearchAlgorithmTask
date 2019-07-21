@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using A_starAlgorithmTask.BL.Abstractions;
+using A_starAlgorithmTask.BL.Extensions;
+using A_starAlgorithmTask.DataObject;
 
-namespace A_starAlgorithmTask
+namespace A_starAlgorithmTask.BL
 {
-    public class CellsBuilder
+    public class CellsBuilder: ICellsBuilder
     {
         public IList<Cell> Build(int[,] array)
         {
@@ -35,7 +38,7 @@ namespace A_starAlgorithmTask
             }
 
             var firstCell = cells.GetCell(0, 0);
-            firstCell.IsActive = true;
+            firstCell.Changed = true;
             return cells;
         }
     }

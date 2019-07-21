@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>A_starAlgorithmTask.BL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\A-starAlgorithmTask.BL.Abstractions\A-starAlgorithmTask.BL.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

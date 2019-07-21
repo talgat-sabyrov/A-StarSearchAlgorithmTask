@@ -1,18 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using A_starAlgorithmTask.BL.Abstractions;
+using A_starAlgorithmTask.DataObject;
 
-namespace A_starAlgorithmTask
+namespace A_starAlgorithmTask.BL
 {
-    public class ActiveCellNeighboursFinder
+    public class ChangedCellNeighboursFinder: IChangedCellNeighboursFinder
     {
-        private readonly ConnectedSameCellsFinder _connectedSameCellsFinder = new ConnectedSameCellsFinder();
+        private readonly IConnectedSameCellsFinder _connectedSameCellsFinder;
 
+        public ChangedCellNeighboursFinder(IConnectedSameCellsFinder connectedSameCellsFinder)
+        {
+            _connectedSameCellsFinder = connectedSameCellsFinder;
+        }
+        
         private IList<Cell> _activeCellConnectedNeighbours;
 
         public IList<Cell> Find(IList<Cell> cells)
         {
             _activeCellConnectedNeighbours = new List<Cell>();
-            var activeCells = cells.Where(x => x.IsActive);
+            var activeCells = cells.Where(x => x.Changed);
             foreach (var activeCell in activeCells)
             {
                 AddConnectedCells(activeCell.NorthCell);
@@ -35,6 +42,5 @@ namespace A_starAlgorithmTask
                 }
             }
         }
-    
     }
 }

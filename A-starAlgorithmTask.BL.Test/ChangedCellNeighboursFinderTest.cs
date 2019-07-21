@@ -1,19 +1,25 @@
-﻿using System;
+﻿using A_starAlgorithmTask.DataObject;
 using System.Collections.Generic;
-using System.Text;
+using A_starAlgorithmTask.BL.Abstractions;
 using Xunit;
+using A_starAlgorithmTask.BL.Extensions;
+using A_starAlgorithmTask.BL;
 
 namespace A_starAlgorithmTask.Test
 {
-    public class ActiveCellNeighboursFinderTest
+    public class ChangedCellNeighboursFinderTest
     {
-        private readonly ActiveCellNeighboursFinder _activeCellNeighboursFinder;
-        private readonly CellsBuilder _cellsBuilder;
-        private readonly IList<Cell> _cells;
+        private readonly ChangedCellNeighboursFinder _changedCellNeighboursFinder;
 
-        public ActiveCellNeighboursFinderTest()
+        private readonly ICellsBuilder _cellsBuilder;
+        private readonly IConnectedSameCellsFinder _connectedSameCellsFinder;
+
+        private readonly IList<Cell> _cells;
+        
+        public ChangedCellNeighboursFinderTest()
         {
-            _activeCellNeighboursFinder = new ActiveCellNeighboursFinder();
+            _connectedSameCellsFinder = new ConnectedSameCellsFinder();
+            _changedCellNeighboursFinder = new ChangedCellNeighboursFinder(_connectedSameCellsFinder);
             _cellsBuilder = new CellsBuilder();
             int[,] array = new[,]
             {
@@ -25,7 +31,7 @@ namespace A_starAlgorithmTask.Test
             };
             _cells = _cellsBuilder.Build(array);
 
-            _cells.GetCell(0, 0).IsActive = true;
+            _cells.GetCell(0, 0).Changed = true;
         }
 
         [Fact]
@@ -41,7 +47,7 @@ namespace A_starAlgorithmTask.Test
                 _cells.GetCell(4, 0)
             };
 
-            var result = _activeCellNeighboursFinder.Find(_cells);
+            var result = _changedCellNeighboursFinder.Find(_cells);
 
             Assert.Equal(expectedResult.Count, result.Count);
             for (int i = 0; i < result.Count; i++)
@@ -55,11 +61,11 @@ namespace A_starAlgorithmTask.Test
         [Fact]
         public void ActiveCellNeighboursFinderTest2()
         {
-            _cells.GetCell(1, 0).IsActive = true;
-            _cells.GetCell(1, 1).IsActive = true;
-            _cells.GetCell(2, 0).IsActive = true;
-            _cells.GetCell(3, 0).IsActive = true;
-            _cells.GetCell(4, 0).IsActive = true;
+            _cells.GetCell(1, 0).Changed = true;
+            _cells.GetCell(1, 1).Changed = true;
+            _cells.GetCell(2, 0).Changed = true;
+            _cells.GetCell(3, 0).Changed = true;
+            _cells.GetCell(4, 0).Changed = true;
 
             var expectedResult = new List<Cell>
             {
@@ -72,7 +78,7 @@ namespace A_starAlgorithmTask.Test
                 _cells.GetCell(4, 1)
             };
 
-            var result = _activeCellNeighboursFinder.Find(_cells);
+            var result = _changedCellNeighboursFinder.Find(_cells);
 
             Assert.Equal(expectedResult.Count, result.Count);
             for (int i = 0; i < result.Count; i++)
